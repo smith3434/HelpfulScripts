@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script>
+function myFunction() {
+  var str = document.getElementById("aufile").value;
+  
+  //document.getElementById("demo").innerHTML="";
+  //document.getElementById("demo").innerHTML += "";
+  var res = str.split('<item>');
+  alert(res.length);
+  var table = document.getElementById("demo");
+  for(var c=0;c<res.length;c++)
+  {
+  
+  var row = table.insertRow(c);
+  
+  //alert(res[c]);
+  //document.getElementById("demo").innerHTML += "<tr>";
+  //	document.getElementById("demo").innerHTML += "<tr><td>"+ res[c]+"</td></tr>";
+    var p_str=res[c];
+    var type = p_str.substring(
+    p_str.lastIndexOf("type        :") + 13, 
+    p_str.lastIndexOf("description :"));
+	
+	var desc = p_str.substring(
+    p_str.lastIndexOf("description :") + 13, 
+    p_str.lastIndexOf("info        :"));
+	
+	var info = p_str.substring(
+    p_str.lastIndexOf("info        :") + 13, 
+    p_str.lastIndexOf("solution    :"));
+	
+	var solution = p_str.substring(
+    p_str.lastIndexOf("solution    :") + 13, 
+    p_str.lastIndexOf("reference   :"));
+	
+	var reference = p_str.substring(
+    p_str.lastIndexOf("reference   :") + 13, 
+    p_str.lastIndexOf("see_also    :"));
+	
+	var item = p_str.substring(
+    p_str.lastIndexOf("item        :") + 13, 
+    p_str.lastIndexOf("</item>"));
+	
+	var cell1 = row.insertCell(0);cell1.innerHTML = type;
+	var cell2 = row.insertCell(1);cell2.innerHTML = desc;
+	var cell3 = row.insertCell(2);cell3.innerHTML = info;
+	var cell4 = row.insertCell(3);cell4.innerHTML = solution;
+	var cell5 = row.insertCell(4);cell5.innerHTML = reference;
+	var cell6 = row.insertCell(5);cell6.innerHTML = item;
+	
+	/*document.getElementById("demo").innerHTML += "<td>"+type+"</td>";
+	document.getElementById("demo").innerHTML += "<td>"+desc+"</td>";
+	document.getElementById("demo").innerHTML += "<td>"+info+"</td>";
+	document.getElementById("demo").innerHTML += "<td>"+solution+"</td>";
+	document.getElementById("demo").innerHTML += "<td>"+reference+"</td>";
+	document.getElementById("demo").innerHTML += "<td>"+item+"</td>"; 
+	
+	document.getElementById("demo").innerHTML += "</tr>";*/
+	//alert(item);
+	//alert(type +"des: "+desc + "info:"+info);
+	//alert(type.match(new RegExp("type        :" + "(.*)" + "description :"))[1]);
+  }
+  document.getElementById("demo").innerHTML += "</table>";
+ // document.getElementById("demo").innerHTML = res;
+}
+</script>
+</head>
+<body>
+<textarea id="aufile" rows="10" cols="60"></textarea>
+
+<p>Click the button to display the array values after the split.</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<table  border="1" id="demo">
+
+</table>
+
+
+</body>
+</html>
